@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{ business.name }}</h1>
+
+{% if current_user.is_authenticated %}
+<div class="card p-4 mb-5">
+    <h4>Deja tu reseña</h4>
+    <form method="POST">
+
+        <label>Lugar (1-10)</label>
+        <input type="number" name="rating_place" min="1" max="10" class="form-control mb-2" required value="{{ existing_review.rating_place if existing_review else '' }}">
+
+        <label>Precio (1-10)</label>
+        <input type="number" name="rating_price" min="1" max="10" class="form-control mb-2" required value="{{ existing_review.rating_price if existing_review else '' }}">
+
+        <label>Instalaciones (1-10)</label>
+        <input type="number" name="rating_install" min="1" max="10" class="form-control mb-2" required value="{{ existing_review.rating_install if existing_review else '' }}">
+
+        <label>Servicio (1-10)</label>
+        <input type="number" name="rating_service" min="1" max="10" class="form-control mb-2" required value="{{ existing_review.rating_service if existing_review else '' }}">
+
+        <label>Ubicación</label>
+        <select name="location" class="form-control mb-3">
+            <option value="Conveniente">Conveniente</option>
+            <option value="No conveniente">No conveniente</option>
+        </select>
+
+        <textarea name="text" class="form-control mb-3" placeholder="Escribe tu reseña..." required>{{ existing_review.text if existing_review else '' }}</textarea>
+
+        <button class="btn btn-primary w-100">
+            {% if existing_review %}Actualizar Reseña{% else %}Publicar Reseña{% endif %}
+        </button>
+
+    </form>
+</div>
+{% endif %}
+
+<h3>Reseñas</h3>
+
+{% for review in reviews %}
+<div class="review-box">
+    <p><strong>Lugar:</strong> {{ review.rating_place }}</p>
+    <p><strong>Precio:</strong> {{ review.rating_price }}</p>
+    <p><strong>Instalaciones:</strong> {{ review.rating_install }}</p>
+    <p><strong>Servicio:</strong> {{ review.rating_service }}</p>
+    <p><strong>Ubicación:</strong> {{ review.location }}</p>
+    <p>{{ review.text }}</p>
+</div>
+{% endfor %}
+
+{% if current_user.is_authenticated and current_user.id == business.owner_id %}
+<a href="/dashboard/{{ business.id }}" class="btn btn-primary mt-4">Ver Panel Administrativo</a>
+{% endif %}
+
+{% endblock %}

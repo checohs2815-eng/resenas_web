@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card p-5 col-md-6 mx-auto">
+    <h2 class="mb-4">Crear Nuevo Negocio</h2>
+    <form method="POST">
+        <input class="form-control mb-3" name="name" placeholder="Nombre del negocio" required>
+        <button class="btn btn-primary w-100">Crear</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Panel Administrativo</h1>
+<h3>{{ business.name }}</h3>
+<p>Total de reseñas: {{ total_reviews }}</p>
+
+<div class="row">
+
+    {% for category, path in graph_paths.items() %}
+    <div class="col-md-6 mb-4">
+        <div class="card p-4">
+            <h4>{{ category }}</h4>
+            <img src="/{{ path }}" class="img-fluid">
+        </div>
+    </div>
+    {% endfor %}
+
+    {% if pie_path %}
+    <div class="col-md-6 mb-4">
+        <div class="card p-4">
+            <h4>Ubicación</h4>
+            <img src="/{{ pie_path }}" class="img-fluid">
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card p-5 col-md-6 mx-auto">
+    <h2 class="mb-4">Registro</h2>
+    <form method="POST">
+        <input class="form-control mb-3" name="username" placeholder="Usuario" required>
+        <input class="form-control mb-3" name="password" type="password" placeholder="Contraseña" required>
+        <button class="btn btn-primary w-100">Registrarse</button>
+    </form>
+</div>
+
+{% endblock %}

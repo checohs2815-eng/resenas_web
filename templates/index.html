@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="mb-4">Negocios Registrados</h1>
+
+<div class="row">
+    {% for business in businesses %}
+    <div class="col-md-4">
+        <div class="card p-4 mb-4">
+            <h3>{{ business.name }}</h3>
+            <a href="/business/{{ business.id }}" class="btn btn-primary mt-3">Ver Negocio</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
